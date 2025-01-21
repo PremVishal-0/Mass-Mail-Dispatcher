@@ -55,10 +55,10 @@ function sendEmails() {
     var promise = new Promise(function(resolve, reject) {
       Email.send({
         Host: "smtp.elasticemail.com",
-        Username: "guptaabhi7503@gmail.com",
-        Password: "5A92CB599906F676D73EF9A3374D60CAE0C3",
-        To: "guptaabhi7503@gmail.com",
-        From: "guptaabhi7503@gmail.com",
+        Username: "pe8308469@yahoo.com",
+        Password: "53ADA3E4550C440DA6AEFC2041863522769F",
+        To: "pe8308469@yahoo.com",
+        From: "pe8308469@yahoo.com",
         Subject: document.querySelector('#subject').value,
         Body: document.getElementById('msg').value
       }).then(
