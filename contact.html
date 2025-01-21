@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-image: url("background.jpg"); 
+      background-repeat: repeat; 
+      background-position: center; 
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    h1 {
+      text-align: center;
+      color: azure;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: azure;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .form-group textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .success-message {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+    }
+    .error-message {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+
+     /* Media Queries */
+     @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+      }
+    }
+
+    /* #status-message {
+      color: gray; 
+    } */
+  </style>
+</head>
+<body>
+  <h1>Contact Us</h1>
+
+  <div class="container">
+    <form id="contact-form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Send Message">
+      </div>
+    </form>
+    <p id="status-message" class="success-message"></p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#contact-form").on("submit", function(event) {
+        event.preventDefault();
+
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var message = $("#message").val();
+
+        var formattedMessage = "Name: " + name + "<br>"
+                              + "Email: " + email + "<br>"
+                              + "Message: " + message;
+
+
+        Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "guptaabhi7503@gmail.com",
+        Password: "5A92CB599906F676D73EF9A3374D60CAE0C3",
+        To: "guptaabhi7503@gmail.com",
+        From: "guptaabhi7503@gmail.com", // Replace with the sender's email address
+          Subject: "New Contact Form Submission",
+          Body: formattedMessage
+        }).then(
+          function() {
+            $("#status-message").text("Message sent successfully!");
+            $("#contact-form")[0].reset();
+          },
+          function(error) {
+            $("#status-message").text("Message sending failed!");
+          }
+        );
+      });
+    });
+  </script>
+</body>
+</html>
+
+
